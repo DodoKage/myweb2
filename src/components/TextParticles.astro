@@ -1,0 +1,202 @@
+---
+/**
+ * TextParticles: 基于 canvas 的文字粒子动画
+ * 灵感来自 @chenglou/pretext 的 variable-typographic-ascii demo
+ * 用文字字符作为粒子，鼠标移动时散开再聚合
+ */
+interface Props {
+  text?: string;
+  class?: string;
+}
+
+const { text = 'WHO I AM', class: className = '' } = Astro.props;
+---
+
+<div class:list={['text-particles-container', className]} data-text={text}>
+  <canvas id="particle-canvas"></canvas>
+</div>
+
+<style>
+  .text-particles-container {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+  #particle-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
+
+<script>
+function initParticles() {
+  const container = document.querySelector('.text-particles-container') as HTMLElement;
+  if (!container) return;
+
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const text = container.dataset.text || 'WHO I AM';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;!?+-=*#@%&';
+
+  let width = 0;
+  let height = 0;
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let animId: number | null = null;
+
+  type Particle = {
+    x: number;
+    y: number;
+    targetX: number;
+    targetY: number;
+    vx: number;
+    vy: number;
+    char: string;
+    size: number;
+    opacity: number;
+  };
+
+  let particles: Particle[] = [];
+
+  function resize() {
+    const rect = container.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * window.devicePixelRatio;
+    canvas.height = height * window.devicePixelRatio;
+    ctx!.scale(window.devicePixelRatio, window.devicePixelRatio);
+    generateParticles();
+  }
+
+  function generateParticles() {
+    particles = [];
+    // Create text shape using offscreen canvas
+    const offscreen = document.createElement('canvas');
+    const offCtx = offscreen.getContext('2d');
+    if (!offCtx) return;
+
+    const fontSize = Math.min(width * 0.18, 64);
+    offscreen.width = width;
+    offscreen.height = height;
+
+    offCtx.fillStyle = '#000';
+    offCtx.font = `bold ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
+    offCtx.textAlign = 'center';
+    offCtx.textBaseline = 'middle';
+    offCtx.fillText(text, width / 2, height / 2);
+
+    // Sample pixels to create particles
+    const imageData = offCtx.getImageData(0, 0, width, height);
+    const gap = 6;
+
+    for (let y = 0; y < height; y += gap) {
+      for (let x = 0; x < width; x += gap) {
+        const index = (y * width + x) * 4;
+        const alpha = imageData.data[index + 3];
+        if (alpha && alpha > 128) {
+          particles.push({
+            x: x + (Math.random() - 0.5) * width,
+            y: y + (Math.random() - 0.5) * height,
+            targetX: x,
+            targetY: y,
+            vx: 0,
+            vy: 0,
+            char: chars[Math.floor(Math.random() * chars.length)],
+            size: 5 + Math.random() * 3,
+            opacity: 0.3 + Math.random() * 0.7,
+          });
+        }
+      }
+    }
+  }
+
+  function render() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, width, height);
+
+    // Warm orange accent: oklch(0.75 0.18 55) ≈ rgb(220,160,80)
+    const mouseRadius = 80;
+
+    for (const p of particles) {
+      // Mouse repulsion
+      const dx = p.x - mouseX;
+      const dy = p.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < mouseRadius && dist > 0) {
+        const force = (mouseRadius - dist) / mouseRadius;
+        p.vx += (dx / dist) * force * 3;
+        p.vy += (dy / dist) * force * 3;
+      }
+
+      // Spring back to target
+      p.vx += (p.targetX - p.x) * 0.05;
+      p.vy += (p.targetY - p.y) * 0.05;
+
+      // Damping
+      p.vx *= 0.85;
+      p.vy *= 0.85;
+
+      // Update position
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Randomly change character occasionally
+      if (Math.random() < 0.002) {
+        p.char = chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      // Draw — white particles
+      ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+      ctx.font = `${p.size}px "Geist Mono", ui-monospace, monospace`;
+      ctx.fillText(p.char, p.x, p.y);
+    }
+
+    animId = requestAnimationFrame(render);
+  }
+
+  function onMouseMove(e: MouseEvent) {
+    const rect = container.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  }
+
+  function onMouseLeave() {
+    mouseX = -1000;
+    mouseY = -1000;
+  }
+
+  function cleanup() {
+    if (animId !== null) cancelAnimationFrame(animId);
+    window.removeEventListener('resize', resize);
+    document.removeEventListener('mousemove', onMouseMove);
+    container.removeEventListener('mouseleave', onMouseLeave);
+  }
+
+  // Allow pointer events on parent for mouse tracking
+  container.style.pointerEvents = 'auto';
+
+  window.addEventListener('resize', resize);
+  document.addEventListener('mousemove', onMouseMove);
+  container.addEventListener('mouseleave', onMouseLeave);
+
+  // Respect reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    resize();
+    render();
+  }
+
+  // Cleanup on page swap (Astro View Transitions)
+  document.addEventListener('astro:before-swap', cleanup, { once: true });
+}
+
+initParticles();
+document.addEventListener('astro:after-swap', initParticles);
+</script>

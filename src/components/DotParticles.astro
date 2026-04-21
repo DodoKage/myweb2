@@ -1,0 +1,200 @@
+---
+/**
+ * TopoMesh: 拓扑线网粒子背景
+ * 圆点布朗运动 + 距离阈值连线 + pretext 双吸引子聚散
+ * 暖橙低饱和色系，几何抽象感
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['topo-mesh', className]}>
+  <canvas id="topo-canvas"></canvas>
+</div>
+
+<style>
+  .topo-mesh {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #topo-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
+
+<script>
+function initTopoMesh() {
+  const container = document.querySelector('.topo-mesh') as HTMLElement;
+  if (!container) return;
+  const canvas = document.getElementById('topo-canvas') as HTMLCanvasElement;
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let w = 0, h = 0, animId: number | null = null;
+
+  const NODE_COUNT = 60;
+  const LINK_DIST = 120;
+  const DRIFT = 0.15;
+  const DAMPING = 0.96;
+  const ATTRACTOR_F1 = 0.08;
+  const ATTRACTOR_F2 = 0.03;
+
+  // Warm muted tone: desaturated orange-brown
+  const DOT_R = 180, DOT_G = 145, DOT_B = 110;
+  const LINE_R = 160, LINE_G = 130, LINE_B = 100;
+
+  type Node = {
+    x: number; y: number;
+    vx: number; vy: number;
+    radius: number;
+  };
+  let nodes: Node[] = [];
+
+  function resize() {
+    const rect = container.getBoundingClientRect();
+    w = rect.width; h = rect.height;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function initNodes() {
+    nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: 1.5 + Math.random() * 1.5,
+      });
+    }
+  }
+
+  function render(now: number) {
+    if (!ctx) return;
+
+    // Dual attractors (pretext pattern)
+    const a1x = Math.cos(now * 0.00025) * w * 0.3 + w * 0.5;
+    const a1y = Math.sin(now * 0.0004) * h * 0.25 + h * 0.4;
+    const a2x = Math.cos(now * 0.00035 + Math.PI) * w * 0.25 + w * 0.5;
+    const a2y = Math.sin(now * 0.0003 + Math.PI) * h * 0.2 + h * 0.6;
+
+    // Update nodes
+    for (const n of nodes) {
+      const d1x = a1x - n.x, d1y = a1y - n.y;
+      const d2x = a2x - n.x, d2y = a2y - n.y;
+      const dist1 = Math.sqrt(d1x * d1x + d1y * d1y) + 1;
+      const dist2 = Math.sqrt(d2x * d2x + d2y * d2y) + 1;
+
+      if (dist1 < dist2) {
+        n.vx += (d1x / dist1) * ATTRACTOR_F1;
+        n.vy += (d1y / dist1) * ATTRACTOR_F1;
+      } else {
+        n.vx += (d2x / dist2) * ATTRACTOR_F2;
+        n.vy += (d2y / dist2) * ATTRACTOR_F2;
+      }
+
+      n.vx += (Math.random() - 0.5) * DRIFT;
+      n.vy += (Math.random() - 0.5) * DRIFT;
+      n.vx *= DAMPING;
+      n.vy *= DAMPING;
+      n.x += n.vx;
+      n.y += n.vy;
+
+      // Soft boundary bounce
+      if (n.x < -30) n.x += w + 60;
+      if (n.x > w + 30) n.x -= w + 60;
+      if (n.y < -30) n.y += h + 60;
+      if (n.y > h + 30) n.y -= h + 60;
+    }
+
+    // Clear
+    ctx.clearRect(0, 0, w, h);
+
+    // Draw links
+    const linkDistSq = LINK_DIST * LINK_DIST;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i]!.x - nodes[j]!.x;
+        const dy = nodes[i]!.y - nodes[j]!.y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < linkDistSq) {
+          const alpha = (1 - distSq / linkDistSq) * 0.12;
+          ctx.strokeStyle = `rgba(${LINE_R},${LINE_G},${LINE_B},${alpha.toFixed(3)})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i]!.x, nodes[i]!.y);
+          ctx.lineTo(nodes[j]!.x, nodes[j]!.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw dots
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${DOT_R},${DOT_G},${DOT_B},0.25)`;
+      ctx.fill();
+    }
+
+    animId = requestAnimationFrame(render);
+  }
+
+  function cleanup() {
+    if (animId !== null) cancelAnimationFrame(animId);
+    window.removeEventListener('resize', onResize);
+  }
+  function onResize() { resize(); initNodes(); }
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('resize', onResize);
+  resize();
+  initNodes();
+
+  if (!reduced) {
+    requestAnimationFrame(render);
+  } else {
+    // Static: draw one frame
+    ctx.clearRect(0, 0, w, h);
+    const lsq = LINK_DIST * LINK_DIST;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i]!.x - nodes[j]!.x;
+        const dy = nodes[i]!.y - nodes[j]!.y;
+        const dsq = dx * dx + dy * dy;
+        if (dsq < lsq) {
+          const a = (1 - dsq / lsq) * 0.1;
+          ctx.strokeStyle = `rgba(${LINE_R},${LINE_G},${LINE_B},${a.toFixed(3)})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i]!.x, nodes[i]!.y);
+          ctx.lineTo(nodes[j]!.x, nodes[j]!.y);
+          ctx.stroke();
+        }
+      }
+    }
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${DOT_R},${DOT_G},${DOT_B},0.2)`;
+      ctx.fill();
+    }
+  }
+
+  document.addEventListener('astro:before-swap', cleanup, { once: true });
+}
+
+initTopoMesh();
+document.addEventListener('astro:after-swap', initTopoMesh);
+</script>

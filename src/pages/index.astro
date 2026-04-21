@@ -1,0 +1,1384 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
+import Link from "@components/Link.astro";
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <!-- Landing: 分屏布局 -->
+  <section id="landing" class="snap-section relative overflow-hidden" aria-labelledby="landing-title">
+    <div class="grid h-full grid-cols-1 grid-rows-[1fr_1fr] md:grid-cols-[1fr_1fr] md:grid-rows-none">
+      <!-- 左侧：照片，全高出血 -->
+      <div class="landing-item landing-visual relative overflow-hidden">
+        <img
+          src="/avatar.jpg"
+          alt="樊博"
+          class="landing-portrait absolute inset-0 h-full w-full object-cover"
+        />
+        <div class="hero-shatter-layer" aria-hidden="true">
+          <canvas class="hero-shatter-canvas"></canvas>
+        </div>
+        <div class="landing-visual-atmosphere" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[var(--color-surface)] opacity-0 md:opacity-100"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent md:opacity-0"></div>
+      </div>
+
+      <!-- 右侧：文字区 -->
+      <div class="landing-item landing-copy relative flex flex-col justify-center px-8 py-12 md:px-12 lg:px-20">
+        <p class="text-xs font-medium uppercase tracking-[0.3em] text-accent">
+          Recruiter First
+        </p>
+
+        <h1 id="landing-title" class="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl" style="color: var(--color-text-primary);">
+          <span class="typewriter" data-text="AI Native PM Candidate">AI Native PM Candidate</span>
+        </h1>
+
+        <div class="mt-8 max-w-[65ch] space-y-4" style="color: var(--color-text-secondary);">
+          <p class="text-base leading-relaxed">
+            你好，我是 Chris，感谢您能点进我的网页了解我。在之后的内容里，我会通过自己的两个项目经历以及个人方法论，来展现自己为什么能够胜任 PM / AI Native PM；阅读预计耗费您三分钟。
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="#selected-work"
+            class="group inline-flex items-center gap-3 text-sm font-medium tracking-wide text-accent transition-all duration-300 hover:gap-4"
+          >
+            <span>Show More</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="mt-12 flex gap-4 text-xs uppercase tracking-[0.12em] opacity-30">
+          <span>PM 求职</span>
+          <span aria-hidden="true">/</span>
+          <span>AI Native</span>
+          <span aria-hidden="true">/</span>
+          <span>问题定义</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: 精选项目 -->
+  <section id="selected-work" class="snap-section selected-work-section" data-nav-title="项目展示" aria-labelledby="selected-work-title">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:px-8 lg:px-10">
+      <div class="selected-work-showcase space-y-10">
+        <div class="selected-work-showcase__intro space-y-4">
+          <p class="selected-work-showcase__eyebrow">Selected Work</p>
+          <div class="space-y-3">
+            <h2 id="selected-work-title" class="font-semibold text-[var(--color-text-primary)] sm:text-2xl lg:text-3xl">
+              用一个完整项目，直接展示我如何把问题推进成结果。
+            </h2>
+            <p class="max-w-[68ch] text-base leading-relaxed opacity-75">
+              不再把项目藏进弹窗里，而是直接把问题定义、关键判断、AI 协作方式和推进路径摊开给招聘方看。
+            </p>
+          </div>
+        </div>
+
+        <div class="selected-work-pages">
+          <article class="selected-work-page selected-work-page--featured" aria-labelledby="selected-work-personal-title">
+            <div class="selected-work-page__header">
+              <div class="space-y-3">
+                <p class="selected-work-page__eyebrow">Page 01 · Personal Site</p>
+                <h3 id="selected-work-personal-title" class="selected-work-page__title">个人求职网站：把自我表达，当成一个产品问题来处理</h3>
+              </div>
+
+              <div class="selected-work-page__columns">
+                <div class="selected-work-page__summary">
+                  <p>这个页面想证明的，不是"我会搭网页"，而是我能否先定义清楚谁在看、他们会以什么心态扫读、需要多快形成第一判断。对我来说，这不是一次视觉输出，而是一道产品设计问题：怎样把个人表达整理成一条可被快速理解、又有质感的判断路径，让招聘方在很短时间里感受到我的思考方式、组织能力和推进标准。</p>
+                  <p>本项目主力使用 <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code</a>，配置文件基于 <a href="https://github.com/affaan-m/everything-claude-code" target="_blank">everything-claude-code</a>；核心 skill 包括 <a href="https://github.com/tanweai/pua" target="_blank">PUA</a>（项目推进与模型调度）和 <a href="https://github.com/pbakaus/impeccable" target="_blank">Impeccable</a>（网页设计优化），同时引入 <a href="https://github.com/chenglou/pretext" target="_blank">Pretext</a> 处理部分渲染、Hermes 进行阶段复盘与 skill 建议。这是我将自己的 agent 工作流从"玩"转化到"用"的一次实践——目标是凭借个人创造力，借助开源社区与 AI 协作，完成一个具有商业化潜力的个人开发项目。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="selected-work-flow-block">
+              <div class="selected-work-flow-block__header">
+                <p class="selected-work-page__eyebrow">Process Flow</p>
+                <h4 class="selected-work-flow-block__title">这个网站是怎么被一步步推进出来的</h4>
+                <p class="selected-work-flow-block__copy">
+                  我把推进过程拆成“判断建立 → 结构成型 → 页面落地 → 细节迭代”四段，不是为了把流程讲得更完整，而是为了让每一步都能说明我当时在观察什么、为什么这么做，以及我怎样把一个模糊的表达任务逐渐收敛成可被真实感受到的页面体验。
+                </p>
+              </div>
+
+              <ol class="selected-work-flow" aria-label="个人求职网站开发流程图">
+                <li class="selected-work-flow__step">
+                  <span class="selected-work-flow__index">01</span>
+                  <div class="selected-work-flow__content">
+                    <p class="selected-work-flow__title">先定义谁会看，以及他们要多快形成判断</p>
+                    <p class="selected-work-flow__copy">锚定招聘方快速扫读的场景，首页首要任务是建立可信的第一判断，而不是完整自述。</p>
+                  </div>
+                </li>
+                <li class="selected-work-flow__step">
+                  <span class="selected-work-flow__index">02</span>
+                  <div class="selected-work-flow__content">
+                    <p class="selected-work-flow__title">把原始内容重组为可扫描的信息架构</p>
+                    <p class="selected-work-flow__copy">反推 section 顺序和文案密度，做信息取舍：前置建立兴趣，后置承担证明。</p>
+                  </div>
+                </li>
+                <li class="selected-work-flow__step">
+                  <span class="selected-work-flow__index">03</span>
+                  <div class="selected-work-flow__content">
+                    <p class="selected-work-flow__title">快速搭出第一版，让问题尽早暴露</p>
+                    <p class="selected-work-flow__copy">先搭出可阅读版本，通过真实阅读暴露内容过重、节奏不顺的问题。</p>
+                  </div>
+                </li>
+                <li class="selected-work-flow__step">
+                  <span class="selected-work-flow__index">04</span>
+                  <div class="selected-work-flow__content">
+                    <p class="selected-work-flow__title">回到细节层持续修正，直到体验成立</p>
+                    <p class="selected-work-flow__copy">修字句、层级、视觉节奏，让页面传达做事方式，不只是"能看"。</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: 方法论 -->
+  <section id="section-hero" class="snap-section flex items-center justify-center" data-nav-title="方法论" aria-labelledby="section-hero-title">
+    <div class="mx-auto max-w-5xl px-6 py-24 md:px-8 lg:px-10">
+      <div class="method-shell space-y-8 md:space-y-10">
+        <div class="max-w-2xl space-y-4">
+          <p class="text-xs font-medium uppercase tracking-[0.28em] text-accent">
+            Method
+          </p>
+          <h2 id="section-hero-title" class="text-2xl font-semibold sm:text-3xl lg:text-4xl leading-[1.15]" style="color: var(--color-text-primary);">
+            把模糊需求，推进成清晰可落地的产品体验。
+          </h2>
+          <p class="max-w-[65ch] text-base leading-relaxed">
+            我习惯先定义问题，再讨论功能。先看目标、用户、场景和约束，再判断体验、成本与落地路径；AI 对我来说，是帮助我更快形成结构和可讨论版本的协作系统。
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.25fr_0.95fr] lg:items-start">
+          <div class="space-y-5">
+            <div class="method-block">
+              <p class="method-kicker">判断原则</p>
+              <div class="grid gap-3 sm:grid-cols-3">
+                <div class="method-card">
+                  <p class="method-card-title">先定义问题</p>
+                  <p class="method-card-copy">先说清目标、用户和约束，再谈方案，避免在错误方向上投入。</p>
+                </div>
+                <div class="method-card">
+                  <p class="method-card-title">同时看体验、成本与落地</p>
+                  <p class="method-card-copy">不只判断能不能做，也判断值不值得做、是否有现实推进路径。</p>
+                </div>
+                <div class="method-card">
+                  <p class="method-card-title">细节决定最终感受</p>
+                  <p class="method-card-copy">体验差异往往不在大方向，而在那些不显眼却会被真实感受到的小地方。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-block">
+              <p class="method-kicker">执行节奏</p>
+              <div class="space-y-3">
+                <div class="method-step">
+                  <span class="method-step-index">01</span>
+                  <div>
+                    <p class="method-step-title">说清目标与边界</p>
+                    <p class="method-step-copy">先确认问题、对象、优先级，以及时间和资源限制。</p>
+                  </div>
+                </div>
+                <div class="method-step">
+                  <span class="method-step-index">02</span>
+                  <div>
+                    <p class="method-step-title">拆解问题并快速建立共识</p>
+                    <p class="method-step-copy">把模糊需求拆成可讨论部分，用调研、样例和结构更快看清方向。</p>
+                  </div>
+                </div>
+                <div class="method-step">
+                  <span class="method-step-index">03</span>
+                  <div>
+                    <p class="method-step-title">先出版本，再修细节</p>
+                    <p class="method-step-copy">先做出能讨论的版本，再持续迭代，直到体验真正成立。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="method-ai-panel">
+            <p class="method-kicker">AI 作为工作流层</p>
+            <p class="text-sm leading-relaxed text-[var(--color-text-primary)]">
+              我把 AI 当作协作系统，而不只是问答工具。
+            </p>
+            <div class="mt-5 space-y-4">
+              <div>
+                <p class="method-ai-title">问题还模糊时</p>
+                <p class="method-ai-copy">帮助拆解问题、补齐调研起点，让讨论更快进入有效状态。</p>
+              </div>
+              <div>
+                <p class="method-ai-title">结构不清晰时</p>
+                <p class="method-ai-copy">辅助整理信息架构、表达顺序和样例框架，让想法更清楚。</p>
+              </div>
+              <div>
+                <p class="method-ai-title">方案推进时</p>
+                <p class="method-ai-copy">快速生成初版、缩短试错周期，再回到人的判断中反复修正。</p>
+              </div>
+            </div>
+            <p class="mt-6 text-xs leading-[1.8] opacity-55">
+              关键不是更快产出内容，而是更快形成判断、暴露问题、逼近更合适的解法。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 关于我 -->
+  <section class="snap-section flex items-center justify-center" data-nav-title="关于我" aria-labelledby="about-contact-title">
+    <div class="mx-auto max-w-3xl px-6 py-24 md:px-8">
+      <div class="about-shell space-y-8">
+        <div class="space-y-3">
+          <h2 id="about-contact-title" class="font-semibold text-[var(--color-text-primary)] sm:text-2xl">
+            关于我
+          </h2>
+          <p class="text-base leading-relaxed" style="color: oklch(0.82 0.08 55);">以财务视角与技术杠杆，驱动产品价值交付。</p>
+        </div>
+
+        <div class="about-blocks">
+          <div class="about-block">
+            <p class="about-block__label">商业逻辑兜底 <span class="about-block__tag">Business Viability</span></p>
+            <p class="about-block__copy">会计学（暨南大学）的底层训练，并未将我禁锢于账本，而是赋予了我绝对现实的商业准绳。比起追逐宏大抽象的概念，我更习惯将产品设计视为一次严密的 ROI 测算——从成本约束、运转逻辑到最终的落地路径，确保每一次业务推进都在真实的商业边界内发生。</p>
+          </div>
+          <div class="about-block">
+            <p class="about-block__label">技术杠杆与统筹执行 <span class="about-block__tag">Execution &amp; Leverage</span></p>
+            <p class="about-block__copy">摒弃空泛的"沟通协调"标签，我倾向于在真实的工程链路中验证执行力。在 AI 智能体工作流构建与商业数据自动化管线的实操中，我独立完成了从"模糊业务诉求"到"技术落地"的闭环验证。这不仅是技术探索，更重塑了我调度资源、拉齐跨界目标以及突破现实阻碍的执行标准。</p>
+          </div>
+          <div class="about-block">
+            <p class="about-block__label">交付标准的颗粒度控制 <span class="about-block__tag">Granularity of Experience</span></p>
+            <p class="about-block__copy">对所谓"细节"的执念，并非单纯的视觉强迫症，而是对"用户认知折损率"的绝对干预。我相信真正的产品质感，不来源于堆砌功能，而是存在于那些未经言说、却能精确引导受众心智的交互颗粒度中。</p>
+          </div>
+          <div class="about-block about-block--cta">
+            <p class="about-block__copy">技术杠杆的运用力、量化拆解的商业嗅觉，外加对交付标准的极致防御。如果你在寻找一个拒绝纸上谈兵、能穿透表象直击业务核心，且对 AI 落地有持续验证力的产品操盘手，期待我们的对话。</p>
+          </div>
+        </div>
+
+        <ul class="not-prose flex flex-wrap items-center gap-x-2 gap-y-2 border-t border-white/8 pt-6 text-sm">
+          <li class="flex items-center gap-x-2 text-nowrap">
+            <Link href="tel:15390677618">手机 15390677618</Link>
+            <span aria-hidden="true">/</span>
+          </li>
+          <li class="flex items-center gap-x-2 text-nowrap">
+            <Link href="mailto:2230116937@qq.com">邮箱 2230116937@qq.com</Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  #landing {
+    min-height: 100dvh;
+    height: 100dvh;
+  }
+
+  #landing > .grid {
+    height: 100%;
+  }
+
+  .landing-copy {
+    min-height: 100%;
+    padding-left: clamp(2rem, 4vw, 3rem);
+    padding-right: clamp(2rem, 4vw, 3rem);
+  }
+
+  .landing-visual {
+    min-height: 100%;
+    --hero-shatter-band: clamp(12px, 2.1vw, 28px);
+    --hero-shatter-glow-rgb: 214 188 148;
+    --hero-shatter-fragment-rgb: 225 212 184;
+  }
+
+  .hero-shatter-layer,
+  .landing-visual-atmosphere {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-shatter-layer {
+    z-index: 1;
+    mix-blend-mode: screen;
+  }
+
+  .hero-shatter-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .landing-visual-atmosphere {
+    z-index: 2;
+    background:
+      radial-gradient(circle at 12% 18%, oklch(0.82 0.06 75 / 0.12), transparent 34%),
+      radial-gradient(circle at 84% 20%, oklch(0.74 0.05 52 / 0.1), transparent 30%),
+      linear-gradient(180deg, oklch(0.16 0.012 260 / 0.2) 0%, transparent 36%, transparent 68%, oklch(0.12 0.01 260 / 0.22) 100%);
+    opacity: 0.68;
+  }
+
+  .landing-portrait {
+    transform: scale(1.18);
+    object-position: center 57%;
+    filter: saturate(0.96) contrast(1.04) brightness(0.96);
+  }
+
+  .landing-item {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: landing-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .typewriter {
+    --typewriter-duration: 1.76s;
+    --typewriter-steps: 22;
+    display: inline-block;
+    width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    border-right: 0.08em solid color-mix(in oklab, var(--color-accent) 78%, white 22%);
+    will-change: width, border-color;
+    animation:
+      typewriter-reveal var(--typewriter-duration) steps(var(--typewriter-steps)) 0.2s forwards,
+      typewriter-caret 0.9s steps(1) 0.2s infinite;
+  }
+
+  .typewriter.done {
+    border-color: transparent;
+    animation: none;
+    width: 100%;
+  }
+  .landing-item:nth-child(1) { animation-delay: 0.1s; }
+  .landing-item:nth-child(2) { animation-delay: 0.3s; }
+
+  .method-shell,
+  .about-shell {
+    width: 100%;
+  }
+
+  .about-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .about-block {
+    padding: 1.15rem 0;
+    border-top: 1px solid oklch(0.34 0.02 260 / 0.35);
+  }
+
+  .about-block:last-child {
+    padding-bottom: 0;
+  }
+
+  .about-block__label {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 0.45rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .about-block__tag {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    opacity: 0.7;
+  }
+
+  .about-block__copy {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .about-block--cta {
+    border-top: 1px solid oklch(0.42 0.04 55 / 0.25);
+    margin-top: 0.25rem;
+  }
+
+  .about-block--cta .about-block__copy {
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    opacity: 0.88;
+  }
+
+  .method-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .method-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    opacity: 0.72;
+  }
+
+  .method-card {
+    border: 1px solid oklch(0.34 0.02 260 / 0.45);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: linear-gradient(180deg, oklch(0.17 0.01 260 / 0.72), oklch(0.15 0.01 260 / 0.45));
+  }
+
+  .method-card-title,
+  .method-step-title,
+  .method-ai-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .method-card-copy,
+  .method-step-copy,
+  .method-ai-copy {
+    margin-top: 0.45rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .method-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.9rem;
+    align-items: start;
+    padding-top: 0.2rem;
+  }
+
+  .method-step + .method-step {
+    border-top: 1px solid oklch(0.34 0.02 260 / 0.35);
+    padding-top: 1rem;
+  }
+
+  .method-step-index {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
+    opacity: 0.8;
+    padding-top: 0.25rem;
+  }
+
+  .method-ai-panel {
+    border: 1px solid oklch(0.34 0.02 260 / 0.45);
+    border-radius: 1.25rem;
+    padding: clamp(1.2rem, 2vw, 1.6rem);
+    background: linear-gradient(180deg, oklch(0.18 0.01 260 / 0.72), oklch(0.14 0.01 260 / 0.58));
+  }
+
+  .selected-work-showcase {
+    width: 100%;
+  }
+
+  .selected-work-section {
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    background: linear-gradient(180deg, oklch(0.14 0.01 260 / 0.98), oklch(0.12 0.01 260 / 1));
+  }
+
+  .selected-work-showcase__intro {
+    max-width: 44rem;
+  }
+
+  .selected-work-showcase__eyebrow,
+  .selected-work-page__eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.84;
+  }
+
+  .selected-work-pages {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .selected-work-page {
+    display: grid;
+    gap: 2rem;
+    border: 1px solid oklch(0.34 0.02 260 / 0.42);
+    border-radius: 1.5rem;
+    padding: clamp(1.4rem, 2.5vw, 2.2rem);
+    background:
+      linear-gradient(180deg, oklch(0.18 0.01 260 / 0.92), oklch(0.13 0.01 260 / 0.88));
+    box-shadow: 0 22px 60px oklch(0.02 0 0 / 0.24);
+  }
+
+  .selected-work-page--featured {
+    background:
+      radial-gradient(circle at top right, oklch(0.72 0.05 70 / 0.08), transparent 24%),
+      linear-gradient(180deg, oklch(0.2 0.012 260 / 0.94), oklch(0.13 0.01 260 / 0.9));
+  }
+
+  .selected-work-page__header {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .selected-work-page__columns {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .selected-work-page__title {
+    font-size: clamp(1.45rem, 1.2rem + 1vw, 2.2rem);
+    line-height: 1.18;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .selected-work-page__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    opacity: 0.92;
+  }
+
+  .selected-work-page__summary a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: oklch(0.68 0.16 250 / 0.35);
+    text-underline-offset: 0.18em;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .selected-work-page__summary a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .selected-work-flow-block__title {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .selected-work-flow-block__copy,
+  .selected-work-flow__copy {
+    color: var(--color-text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .selected-work-flow__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 0.9rem;
+    align-items: start;
+    padding-top: 0.8rem;
+    border-top: 1px solid oklch(0.34 0.02 260 / 0.28);
+  }
+
+  .selected-work-flow-block {
+    display: grid;
+    gap: 1.25rem;
+    border: 1px solid oklch(0.34 0.02 260 / 0.4);
+    border-radius: 1.25rem;
+    padding: clamp(1.2rem, 2vw, 1.6rem);
+    background: linear-gradient(180deg, oklch(0.16 0.01 260 / 0.82), oklch(0.12 0.01 260 / 0.62));
+  }
+
+  .selected-work-flow {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .selected-work-flow__step:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .selected-work-flow__index {
+    padding-top: 0.15rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
+    opacity: 0.84;
+  }
+
+  .selected-work-flow__title {
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--color-text-primary);
+  }
+
+  .selected-work-flow__copy {
+    margin-top: 0.25rem;
+  }
+
+  @keyframes landing-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes typewriter-reveal {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes typewriter-caret {
+    0%,
+    45% {
+      border-color: color-mix(in oklab, var(--color-accent) 78%, white 22%);
+    }
+
+    46%,
+    100% {
+      border-color: transparent;
+    }
+  }
+
+  /* Scroll-snap: one scroll = one page */
+  .snap-section {
+    min-height: 100dvh;
+    height: auto;
+    scroll-snap-align: start;
+  }
+
+  #section-hero {
+    scroll-margin-top: 4rem;
+  }
+
+  :global(#site-header.landing-header-hidden) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 767px) {
+    #landing {
+      height: auto;
+      min-height: 100dvh;
+    }
+
+    #landing > .grid {
+      min-height: 100dvh;
+      height: auto;
+    }
+
+    .landing-visual {
+      min-height: 50dvh;
+      --hero-shatter-band: clamp(10px, 3vw, 22px);
+    }
+
+    .landing-copy {
+      min-height: 50dvh;
+    }
+
+    .selected-work-page {
+      border-radius: 1.2rem;
+      padding: 1rem;
+    }
+
+    .selected-work-flow__step {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .landing-copy {
+      padding-top: clamp(0.8rem, 4.5vh, 2.8rem);
+      padding-bottom: clamp(3rem, 5vh, 4rem);
+    }
+
+    .selected-work-flow {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.25rem;
+    }
+
+    .selected-work-flow__step:nth-child(-n+2) {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .snap-section {
+      min-height: 100dvh;
+      height: auto;
+    }
+
+    .selected-work-section {
+      min-height: 100dvh;
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .landing-item {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .typewriter {
+      width: auto;
+      border-right: 0;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  let landingInitialized = false;
+  let landingCleanup: (() => void) | null = null;
+  let typewriterCleanup: (() => void) | null = null;
+
+  function initLandingTypewriter(root: HTMLElement) {
+    const typewriter = root.querySelector<HTMLElement>('.typewriter');
+    if (!typewriter) return () => {};
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const legacyMotionQuery = motionQuery as MediaQueryList & {
+      addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+      removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+    };
+    const rawText = typewriter.dataset.text?.trim() || typewriter.textContent?.trim() || '';
+    if (!rawText) return () => {};
+
+    let doneTimer = 0;
+
+    typewriter.textContent = rawText;
+
+    const getPerCharDuration = (value: string) => {
+      const hasChinese = /[\u3400-\u9fff]/.test(value);
+      return hasChinese ? 0.12 : 0.08;
+    };
+
+    const applyMotionState = (reducedMotion: boolean) => {
+      window.clearTimeout(doneTimer);
+      typewriter.classList.remove('done');
+
+      if (reducedMotion) {
+        typewriter.style.removeProperty('--typewriter-duration');
+        typewriter.style.removeProperty('--typewriter-steps');
+        typewriter.classList.add('done');
+        return;
+      }
+
+      const chars = Array.from(rawText).length;
+      const duration = Math.max(chars * getPerCharDuration(rawText), 0.6);
+      typewriter.style.setProperty('--typewriter-duration', `${duration}s`);
+      typewriter.style.setProperty('--typewriter-steps', `${Math.max(chars, 1)}`);
+    };
+
+    const handleAnimationEnd = (event: AnimationEvent) => {
+      if (event.animationName !== 'typewriter-reveal') return;
+      window.clearTimeout(doneTimer);
+      doneTimer = window.setTimeout(() => {
+        typewriter.classList.add('done');
+      }, 1000);
+    };
+
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      applyMotionState(event.matches);
+    };
+
+    applyMotionState(motionQuery.matches);
+    typewriter.addEventListener('animationend', handleAnimationEnd);
+
+    if ('addEventListener' in motionQuery) {
+      motionQuery.addEventListener('change', handleMotionChange);
+    } else {
+      legacyMotionQuery.addListener?.(handleMotionChange);
+    }
+
+    return () => {
+      window.clearTimeout(doneTimer);
+      typewriter.removeEventListener('animationend', handleAnimationEnd);
+      if ('removeEventListener' in motionQuery) {
+        motionQuery.removeEventListener('change', handleMotionChange);
+      } else {
+        legacyMotionQuery.removeListener?.(handleMotionChange);
+      }
+    };
+  }
+
+  function setLandingHeaderVisibility(isLandingVisible: boolean) {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    header.classList.toggle('landing-header-hidden', isLandingVisible);
+  }
+
+  function createHeroImageShatter(root: HTMLElement) {
+    const canvas = root.querySelector<HTMLCanvasElement>('.hero-shatter-canvas');
+    if (!canvas) return () => {};
+
+    const context = canvas.getContext('2d');
+    if (!context) return () => {};
+
+    const image = root.querySelector<HTMLImageElement>('.landing-portrait');
+    if (!image) return () => {};
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const legacyMotionQuery = motionQuery as MediaQueryList & {
+      addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+      removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+    };
+
+    let reducedMotion = motionQuery.matches;
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let edgeBand = 0;
+    let animationFrameId = 0;
+    let resizeFrameId = 0;
+    let idleTimer = 0;
+    let pointerInside = false;
+    let pointerStrength = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    let pulse = 0;
+    let imageReady = false;
+    let imageBitmap: ImageBitmap | null = null;
+    let imageData: ImageData | null = null;
+    let imageDataWidth = 0;
+    let imageDataHeight = 0;
+    let pointerListenersBound = false;
+    let fragmentColor = 'rgba(244, 228, 193, 0.94)';
+    let dustColor = 'rgba(255, 214, 150, 0.4)';
+    let glowColor = 'rgba(255, 214, 150, 0.18)';
+    let glowRgb = '255, 214, 150';
+    let isVisible = true;
+    let isDestroyed = false;
+
+    const MAX_FRAGMENTS = 84;
+    const FRAGMENT_IDLE_MS = 220;
+    const fragments = Array.from({ length: MAX_FRAGMENTS }, () => ({
+      active: false,
+      x: 0,
+      y: 0,
+      originX: 0,
+      originY: 0,
+      vx: 0,
+      vy: 0,
+      size: 0,
+      rotation: 0,
+      rotationVelocity: 0,
+      life: 0,
+      maxLife: 0,
+      alpha: 0,
+      color: '',
+      drift: 0,
+    }));
+
+    const readEdgeBand = () => {
+      const bandValue = Number.parseFloat(getComputedStyle(root).getPropertyValue('--hero-shatter-band'));
+      return Number.isFinite(bandValue) ? bandValue : 40;
+    };
+
+    const updatePalette = () => {
+      const glowRgbValue = getComputedStyle(root).getPropertyValue('--hero-shatter-glow-rgb').trim() || '255 214 150';
+      const fragmentRgbValue = getComputedStyle(root).getPropertyValue('--hero-shatter-fragment-rgb').trim() || '244 228 193';
+      glowRgb = glowRgbValue.split(/\s+/).join(', ');
+      const fragmentRgb = fragmentRgbValue.split(/\s+/).join(', ');
+      fragmentColor = `rgba(${fragmentRgb}, 0.82)`;
+      dustColor = `rgba(${glowRgb}, 0.22)`;
+      glowColor = `rgba(${glowRgb}, 0.1)`;
+    };
+
+    const getImageRect = () => {
+      const bounds = root.getBoundingClientRect();
+      const naturalWidth = image.naturalWidth || width;
+      const naturalHeight = image.naturalHeight || height;
+      const scale = Math.max(bounds.width / naturalWidth, bounds.height / naturalHeight);
+      const renderedWidth = naturalWidth * scale;
+      const renderedHeight = naturalHeight * scale;
+      const objectPosition = getComputedStyle(image).objectPosition || '50% 50%';
+      const [positionXRaw = '50%', positionYRaw = '50%'] = objectPosition.split(/\s+/);
+      const parsePosition = (value: string) => {
+        if (value.endsWith('%')) return Number.parseFloat(value) / 100;
+        if (value === 'left' || value === 'top') return 0;
+        if (value === 'right' || value === 'bottom') return 1;
+        if (value === 'center') return 0.5;
+        return 0.5;
+      };
+
+      const offsetX = (bounds.width - renderedWidth) * parsePosition(positionXRaw);
+      const offsetY = (bounds.height - renderedHeight) * parsePosition(positionYRaw);
+
+      return {
+        x: offsetX,
+        y: offsetY,
+        width: renderedWidth,
+        height: renderedHeight,
+      };
+    };
+
+    const sampleColor = (sourceX: number, sourceY: number) => {
+      if (!imageData || !imageDataWidth || !imageDataHeight) {
+        return fragmentColor;
+      }
+
+      const pixelX = Math.max(0, Math.min(imageDataWidth - 1, Math.round(sourceX)));
+      const pixelY = Math.max(0, Math.min(imageDataHeight - 1, Math.round(sourceY)));
+      const pixelIndex = (pixelY * imageDataWidth + pixelX) * 4;
+      const red = imageData.data[pixelIndex] ?? 244;
+      const green = imageData.data[pixelIndex + 1] ?? 228;
+      const blue = imageData.data[pixelIndex + 2] ?? 193;
+      return `rgba(${red}, ${green}, ${blue}, 0.92)`;
+    };
+
+    const mapCanvasToImage = (canvasX: number, canvasY: number) => {
+      const imageRect = getImageRect();
+      const relativeX = imageRect.width ? (canvasX - imageRect.x) / imageRect.width : 0.5;
+      const relativeY = imageRect.height ? (canvasY - imageRect.y) / imageRect.height : 0.5;
+      return {
+        x: relativeX * imageDataWidth,
+        y: relativeY * imageDataHeight,
+      };
+    };
+
+    const isNearEdge = (x: number, y: number) => (
+      x <= edgeBand || x >= width - edgeBand || y <= edgeBand || y >= height - edgeBand
+    );
+
+    const deactivateFragment = (fragment: typeof fragments[number]) => {
+      fragment.active = false;
+      fragment.life = 0;
+      fragment.alpha = 0;
+    };
+
+    const spawnFragment = (originX: number, originY: number, intensity: number) => {
+      const fragment = fragments.find((item) => !item.active);
+      if (!fragment) return;
+
+      const angle = Math.random() * Math.PI * 2;
+      const radialBias = Math.max(0.48, intensity);
+      const offset = Math.random() * edgeBand * 0.04;
+      const mappedPoint = mapCanvasToImage(originX, originY);
+
+      fragment.active = true;
+      fragment.originX = originX;
+      fragment.originY = originY;
+      fragment.x = originX + Math.cos(angle) * offset;
+      fragment.y = originY + Math.sin(angle) * offset;
+      fragment.vx = (Math.random() - 0.5) * 0.2 + Math.cos(angle) * (0.24 + radialBias * 0.7);
+      fragment.vy = (Math.random() - 0.5) * 0.2 + Math.sin(angle) * (0.22 + radialBias * 0.62);
+      fragment.size = 0.9 + Math.random() * 1.5 + radialBias * 0.95;
+      fragment.rotation = Math.random() * Math.PI;
+      fragment.rotationVelocity = (Math.random() - 0.5) * 0.12;
+      fragment.maxLife = 9 + Math.random() * 6;
+      fragment.life = fragment.maxLife;
+      fragment.alpha = 0.24 + Math.random() * 0.14;
+      fragment.drift = 0.88 + Math.random() * 0.035;
+      fragment.color = imageReady ? sampleColor(mappedPoint.x, mappedPoint.y) : fragmentColor;
+    };
+
+    const emitShatter = (eventX: number, eventY: number, deltaX: number, deltaY: number) => {
+      if (reducedMotion || !isNearEdge(eventX, eventY)) return;
+
+      const movement = Math.min(1, Math.hypot(deltaX, deltaY) / 24);
+      const edgeAffinity = 1 - Math.min(
+        Math.min(eventX, width - eventX, eventY, height - eventY) / Math.max(edgeBand, 1),
+        1,
+      );
+      const spawnCount = Math.max(1, Math.round(1 + movement * 1.4 + edgeAffinity * 1.2));
+
+      for (let index = 0; index < spawnCount; index += 1) {
+        const scatter = Math.random() * edgeBand * 0.05;
+        const scatterAngle = Math.random() * Math.PI * 2;
+        spawnFragment(
+          eventX + Math.cos(scatterAngle) * scatter,
+          eventY + Math.sin(scatterAngle) * scatter,
+          Math.max(movement, edgeAffinity),
+        );
+      }
+    };
+
+    const drawStaticEdgeDust = () => {
+      const corners = [
+        { x: edgeBand * 0.8, y: edgeBand * 0.8 },
+        { x: width - edgeBand * 0.8, y: edgeBand * 0.92 },
+        { x: width - edgeBand * 0.82, y: height - edgeBand * 0.82 },
+        { x: edgeBand * 0.78, y: height - edgeBand * 0.9 },
+      ];
+
+      context.fillStyle = dustColor;
+      corners.forEach((corner, cornerIndex) => {
+        const count = 4 + cornerIndex;
+        for (let index = 0; index < count; index += 1) {
+          const distance = Math.random() * edgeBand * 0.58;
+          const angle = (Math.PI / 2) * cornerIndex + Math.random() * 0.9;
+          const x = corner.x + Math.cos(angle) * distance;
+          const y = corner.y + Math.sin(angle) * distance;
+          context.globalAlpha = 0.14 + Math.random() * 0.12;
+          context.beginPath();
+          context.arc(x, y, 0.8 + Math.random() * 1.4, 0, Math.PI * 2);
+          context.fill();
+        }
+      });
+    };
+
+    const drawGlow = () => {
+      const imageRect = getImageRect();
+      const glowAlpha = 0.018 + pointerStrength * 0.022;
+      const edgeGradient = context.createRadialGradient(pointerX, pointerY, 0, pointerX, pointerY, edgeBand * 1.1);
+      edgeGradient.addColorStop(0, `rgba(${glowRgb}, ${glowAlpha})`);
+      edgeGradient.addColorStop(1, `rgba(${glowRgb}, 0)`);
+      context.fillStyle = edgeGradient;
+      context.globalAlpha = 0.18;
+      context.fillRect(0, 0, width, height);
+
+      const perimeterGlow = context.createLinearGradient(imageRect.x, imageRect.y, imageRect.x + imageRect.width, imageRect.y + imageRect.height);
+      perimeterGlow.addColorStop(0, `rgba(${glowRgb}, 0.012)`);
+      perimeterGlow.addColorStop(0.5, `rgba(${glowRgb}, 0)`);
+      perimeterGlow.addColorStop(1, `rgba(${glowRgb}, 0.016)`);
+      context.strokeStyle = perimeterGlow;
+      context.globalAlpha = 0.1 + pointerStrength * 0.04;
+      context.lineWidth = 1;
+      context.strokeRect(0.5, 0.5, Math.max(width - 1, 0), Math.max(height - 1, 0));
+      context.globalAlpha = 1;
+    };
+
+    const drawFragment = (fragment: typeof fragments[number]) => {
+      const lifeRatio = fragment.maxLife ? fragment.life / fragment.maxLife : 0;
+      const shardSize = fragment.size * (0.72 + lifeRatio * 0.4);
+
+      context.save();
+      context.translate(fragment.x, fragment.y);
+      context.rotate(fragment.rotation);
+      context.globalAlpha = fragment.alpha * lifeRatio;
+      context.fillStyle = fragment.color;
+      context.beginPath();
+      context.moveTo(0, -shardSize);
+      context.lineTo(shardSize * 0.85, shardSize * 0.2);
+      context.lineTo(0, shardSize);
+      context.lineTo(-shardSize * 0.55, shardSize * 0.08);
+      context.closePath();
+      context.fill();
+      context.restore();
+
+      context.globalAlpha = fragment.alpha * lifeRatio * 0.22;
+      context.fillStyle = dustColor;
+      context.beginPath();
+      context.arc(fragment.originX, fragment.originY, Math.max(0.5, shardSize * 0.24), 0, Math.PI * 2);
+      context.fill();
+      context.globalAlpha = 1;
+    };
+
+    const drawFrame = (time = performance.now()) => {
+      context.clearRect(0, 0, width, height);
+
+      pulse += (pointerInside ? 0.05 : 0.02) + pointerStrength * 0.015;
+      pointerStrength += ((pointerInside ? 1 : 0) - pointerStrength) * 0.08;
+
+      drawGlow();
+
+      if (reducedMotion) {
+        drawStaticEdgeDust();
+      }
+
+      fragments.forEach((fragment) => {
+        if (!fragment.active) return;
+
+        fragment.life -= 1;
+        if (fragment.life <= 0) {
+          deactivateFragment(fragment);
+          return;
+        }
+
+        fragment.vx *= fragment.drift;
+        fragment.vy *= fragment.drift;
+        fragment.x += fragment.vx;
+        fragment.y += fragment.vy;
+        fragment.rotation += fragment.rotationVelocity;
+        fragment.alpha *= 0.97;
+
+        if (!isNearEdge(fragment.originX, fragment.originY) || fragment.x < -24 || fragment.x > width + 24 || fragment.y < -24 || fragment.y > height + 24) {
+          deactivateFragment(fragment);
+          return;
+        }
+
+        drawFragment(fragment);
+      });
+
+      context.globalAlpha = 0.12 + pointerStrength * 0.08;
+      context.strokeStyle = dustColor;
+      context.lineWidth = 1;
+      context.setLineDash([2, 12]);
+      context.lineDashOffset = -pulse * 6;
+      context.strokeRect(edgeBand * 0.18, edgeBand * 0.18, width - edgeBand * 0.36, height - edgeBand * 0.36);
+      context.setLineDash([]);
+      context.globalAlpha = 1;
+    };
+
+    const render = (time: number) => {
+      drawFrame(time);
+      const hasActiveFragments = fragments.some((fragment) => fragment.active);
+      const shouldKeepAnimating = isVisible && (pointerInside || pointerStrength > 0.02 || hasActiveFragments);
+
+      if (shouldKeepAnimating) {
+        animationFrameId = window.requestAnimationFrame(render);
+      } else {
+        animationFrameId = 0;
+      }
+    };
+
+    const startRenderLoop = () => {
+      if (animationFrameId) return;
+      animationFrameId = window.requestAnimationFrame(render);
+    };
+
+    const resizeCanvas = () => {
+      const bounds = root.getBoundingClientRect();
+      width = Math.max(bounds.width, 1);
+      height = Math.max(bounds.height, 1);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      edgeBand = Math.min(readEdgeBand(), width * 0.22, height * 0.22);
+      updatePalette();
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      pointerX = width * 0.5;
+      pointerY = height * 0.5;
+      fragments.forEach(deactivateFragment);
+      drawFrame();
+    };
+
+    const handleResize = () => {
+      window.cancelAnimationFrame(resizeFrameId);
+      resizeFrameId = window.requestAnimationFrame(() => {
+        resizeCanvas();
+      });
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const bounds = root.getBoundingClientRect();
+      const nextX = event.clientX - bounds.left;
+      const nextY = event.clientY - bounds.top;
+      const deltaX = nextX - pointerX;
+      const deltaY = nextY - pointerY;
+
+      pointerInside = true;
+      pointerX = nextX;
+      pointerY = nextY;
+      emitShatter(nextX, nextY, deltaX, deltaY);
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        pointerInside = false;
+      }, FRAGMENT_IDLE_MS);
+      startRenderLoop();
+    };
+
+    const handlePointerLeave = () => {
+      pointerInside = false;
+      window.clearTimeout(idleTimer);
+      startRenderLoop();
+    };
+
+    const setVisibility = (nextVisible: boolean) => {
+      isVisible = nextVisible;
+      if (isVisible) {
+        startRenderLoop();
+        return;
+      }
+
+      pointerInside = false;
+      pointerStrength = 0;
+      window.clearTimeout(idleTimer);
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+      drawFrame();
+    };
+
+    const bindPointerListeners = () => {
+      if (pointerListenersBound || reducedMotion) return;
+      root.addEventListener('pointermove', handlePointerMove);
+      root.addEventListener('pointerleave', handlePointerLeave);
+      pointerListenersBound = true;
+    };
+
+    const unbindPointerListeners = () => {
+      if (!pointerListenersBound) return;
+      root.removeEventListener('pointermove', handlePointerMove);
+      root.removeEventListener('pointerleave', handlePointerLeave);
+      pointerListenersBound = false;
+    };
+
+    const prepareImageData = async () => {
+      if (!image.complete || !image.naturalWidth || !image.naturalHeight) return;
+
+      try {
+        imageBitmap?.close();
+        imageBitmap = await createImageBitmap(image);
+        const sampleWidth = Math.max(48, Math.round(imageBitmap.width * 0.18));
+        const sampleHeight = Math.max(48, Math.round(imageBitmap.height * 0.18));
+        const sampleCanvas = document.createElement('canvas');
+        sampleCanvas.width = sampleWidth;
+        sampleCanvas.height = sampleHeight;
+        const sampleContext = sampleCanvas.getContext('2d', { willReadFrequently: true });
+        if (!sampleContext) return;
+        sampleContext.drawImage(imageBitmap, 0, 0, sampleWidth, sampleHeight);
+        imageData = sampleContext.getImageData(0, 0, sampleWidth, sampleHeight);
+        imageDataWidth = sampleWidth;
+        imageDataHeight = sampleHeight;
+        imageReady = true;
+      } catch {
+        imageData = null;
+        imageDataWidth = 0;
+        imageDataHeight = 0;
+        imageReady = false;
+        console.warn('Hero shatter effect image sampling failed. Falling back to default fragment colors.');
+      }
+    };
+
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      reducedMotion = event.matches;
+      pointerInside = false;
+      pointerStrength = 0;
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+      window.clearTimeout(idleTimer);
+      fragments.forEach(deactivateFragment);
+      if (reducedMotion) {
+        unbindPointerListeners();
+      } else {
+        bindPointerListeners();
+      }
+      resizeCanvas();
+    };
+
+    const initializeImage = () => {
+      prepareImageData().finally(() => {
+        if (isDestroyed) return;
+        drawFrame();
+        startRenderLoop();
+      });
+    };
+
+    resizeCanvas();
+    bindPointerListeners();
+    window.addEventListener('resize', handleResize);
+
+    let visibilityObserver: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+      visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          setVisibility(entry?.isIntersecting ?? true);
+        },
+        { threshold: 0.05 }
+      );
+      visibilityObserver.observe(root);
+    }
+
+    if (image.complete && image.naturalWidth) {
+      initializeImage();
+    } else {
+      image.addEventListener('load', initializeImage, { once: true });
+    }
+
+    if ('addEventListener' in motionQuery) {
+      motionQuery.addEventListener('change', handleMotionChange);
+    } else {
+      legacyMotionQuery.addListener?.(handleMotionChange);
+    }
+
+    return () => {
+      isDestroyed = true;
+      window.cancelAnimationFrame(animationFrameId);
+      window.cancelAnimationFrame(resizeFrameId);
+      window.clearTimeout(idleTimer);
+      unbindPointerListeners();
+      visibilityObserver?.disconnect();
+      window.removeEventListener('resize', handleResize);
+      image.removeEventListener('load', initializeImage);
+      if ('removeEventListener' in motionQuery) {
+        motionQuery.removeEventListener('change', handleMotionChange);
+      } else {
+        legacyMotionQuery.removeListener?.(handleMotionChange);
+      }
+      imageBitmap?.close();
+      context.clearRect(0, 0, width, height);
+    };
+  }
+
+  function initLanding() {
+    if (landingInitialized) return;
+
+    setLandingHeaderVisibility(false);
+
+    const landing = document.getElementById('landing');
+    if (!landing) return;
+
+    landingInitialized = true;
+
+    const visual = landing.querySelector<HTMLElement>('.landing-visual');
+    landingCleanup = visual ? createHeroImageShatter(visual) : null;
+    typewriterCleanup = initLandingTypewriter(landing);
+
+    let observer: IntersectionObserver | null = null;
+
+    // Hide header when landing is visible
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setLandingHeaderVisibility(entry.isIntersecting);
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(landing);
+    }
+
+    // Smooth scroll for the button
+    const btn = landing.querySelector('a[href="#selected-work"]');
+    const handleScrollClick = (e: Event) => {
+      e.preventDefault();
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+      document.getElementById('selected-work')?.scrollIntoView({ behavior });
+    };
+    btn?.addEventListener('click', handleScrollClick);
+
+    document.addEventListener('astro:before-swap', () => {
+      landingInitialized = false;
+      setLandingHeaderVisibility(false);
+      observer?.disconnect();
+      landingCleanup?.();
+      landingCleanup = null;
+      typewriterCleanup?.();
+      typewriterCleanup = null;
+      btn?.removeEventListener('click', handleScrollClick);
+      document.removeEventListener('astro:after-swap', initLanding);
+    }, { once: true });
+  }
+
+  document.removeEventListener('astro:after-swap', initLanding);
+  document.addEventListener('astro:after-swap', initLanding);
+  initLanding();
+</script>
+

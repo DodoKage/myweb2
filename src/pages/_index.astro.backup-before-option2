@@ -1,0 +1,459 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
+import Link from "@components/Link.astro";
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <!-- Landing: 分屏布局 -->
+  <section id="landing" class="snap-section relative overflow-hidden" aria-labelledby="landing-title">
+    <div class="grid h-full grid-cols-1 grid-rows-[1fr_1fr] md:grid-cols-[1fr_1fr] md:grid-rows-none">
+      <!-- 左侧：照片，全高出血 -->
+      <div class="landing-item landing-visual relative overflow-hidden">
+        <img
+          src="/avatar.jpg"
+          alt="樊博"
+          class="landing-portrait absolute inset-0 h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[var(--color-surface)] opacity-0 md:opacity-100"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent md:opacity-0"></div>
+      </div>
+
+      <!-- 右侧：文字区 -->
+      <div class="landing-item landing-copy relative flex flex-col justify-center px-8 py-12 md:px-12 lg:px-20">
+        <p class="text-xs font-medium uppercase tracking-[0.3em] text-accent">
+          Recruiter First
+        </p>
+
+        <h1 id="landing-title" class="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl" style="color: var(--color-text-primary);">
+          AI Native PM Candidate
+        </h1>
+
+        <div class="mt-8 max-w-lg space-y-4" style="color: var(--color-text-secondary);">
+          <p class="text-base leading-[1.8] sm:text-lg">
+            我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。
+          </p>
+          <p class="text-sm leading-[1.8] opacity-60">
+            这个页面本身也是一次产品表达：如果简历很难完整体现我的判断力、结构化思考和细节意识，我就把它做成一个能被直接感受到的体验。
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="#section-hero"
+            class="group inline-flex items-center gap-3 text-sm font-medium tracking-wide text-accent transition-all duration-300 hover:gap-4"
+          >
+            <span>看我如何思考与推进</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-y-0.5">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="mt-12 flex gap-4 text-xs uppercase tracking-widest opacity-30">
+          <span>PM 求职</span>
+          <span>/</span>
+          <span>AI Native</span>
+          <span>/</span>
+          <span>问题定义</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: 我的方法 -->
+  <section id="section-hero" class="snap-section flex items-center justify-center" data-nav-title="我的方法" aria-labelledby="section-hero-title">
+    <div class="mx-auto max-w-5xl px-6 py-24 md:px-8 lg:px-10">
+      <div class="method-shell animate space-y-8 md:space-y-10">
+        <div class="max-w-2xl space-y-4">
+          <p class="text-xs font-medium uppercase tracking-[0.28em] text-accent">
+            Method
+          </p>
+          <h2 id="section-hero-title" class="text-2xl font-semibold sm:text-3xl lg:text-4xl" style="color: var(--color-text-primary);">
+            把模糊需求，推进成清晰可落地的产品体验。
+          </h2>
+          <p class="max-w-xl text-sm leading-[1.9] sm:text-base">
+            我习惯先定义问题，再讨论功能。先看目标、用户、场景和约束，再判断体验、成本与落地路径；AI 对我来说，是帮助我更快形成结构和可讨论版本的协作系统。
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.25fr_0.95fr] lg:items-start">
+          <div class="space-y-5">
+            <div class="method-block">
+              <p class="method-kicker">判断原则</p>
+              <div class="grid gap-3 sm:grid-cols-3">
+                <div class="method-card">
+                  <p class="method-card-title">先定义问题</p>
+                  <p class="method-card-copy">先说清目标、用户和约束，再谈方案，避免在错误方向上投入。</p>
+                </div>
+                <div class="method-card">
+                  <p class="method-card-title">同时看体验、成本与落地</p>
+                  <p class="method-card-copy">不只判断能不能做，也判断值不值得做、是否有现实推进路径。</p>
+                </div>
+                <div class="method-card">
+                  <p class="method-card-title">细节决定最终感受</p>
+                  <p class="method-card-copy">体验差异往往不在大方向，而在那些不显眼却会被真实感受到的小地方。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-block">
+              <p class="method-kicker">执行节奏</p>
+              <div class="space-y-3">
+                <div class="method-step">
+                  <span class="method-step-index">01</span>
+                  <div>
+                    <p class="method-step-title">说清目标与边界</p>
+                    <p class="method-step-copy">先确认问题、对象、优先级，以及时间和资源限制。</p>
+                  </div>
+                </div>
+                <div class="method-step">
+                  <span class="method-step-index">02</span>
+                  <div>
+                    <p class="method-step-title">拆解问题并快速建立共识</p>
+                    <p class="method-step-copy">把模糊需求拆成可讨论部分，用调研、样例和结构更快看清方向。</p>
+                  </div>
+                </div>
+                <div class="method-step">
+                  <span class="method-step-index">03</span>
+                  <div>
+                    <p class="method-step-title">先出版本，再修细节</p>
+                    <p class="method-step-copy">先做出能讨论的版本，再持续迭代，直到体验真正成立。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="method-ai-panel">
+            <p class="method-kicker">AI 作为工作流层</p>
+            <p class="text-sm leading-[1.9] text-[var(--color-text-primary)]">
+              我把 AI 当作协作系统，而不只是问答工具。
+            </p>
+            <div class="mt-5 space-y-4">
+              <div>
+                <p class="method-ai-title">问题还模糊时</p>
+                <p class="method-ai-copy">帮助拆解问题、补齐调研起点，让讨论更快进入有效状态。</p>
+              </div>
+              <div>
+                <p class="method-ai-title">结构不清晰时</p>
+                <p class="method-ai-copy">辅助整理信息架构、表达顺序和样例框架，让想法更清楚。</p>
+              </div>
+              <div>
+                <p class="method-ai-title">方案推进时</p>
+                <p class="method-ai-copy">快速生成初版、缩短试错周期，再回到人的判断中反复修正。</p>
+              </div>
+            </div>
+            <p class="mt-6 text-xs leading-[1.8] opacity-55">
+              关键不是更快产出内容，而是更快形成判断、暴露问题、逼近更合适的解法。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: 精选项目 -->
+  <section class="snap-section flex items-center justify-center" data-nav-title="精选项目" aria-labelledby="selected-work-title">
+    <div class="mx-auto max-w-3xl px-6 py-24 md:px-8">
+      <div class="animate space-y-6">
+        <div class="space-y-3">
+          <h2 id="selected-work-title" class="font-semibold text-[var(--color-text-primary)] sm:text-2xl">
+            精选项目
+          </h2>
+          <p class="max-w-2xl text-sm leading-[1.9] opacity-75">
+            下面两个例子，更适合帮助招聘方快速判断我如何定义问题、组织表达，以及把想法推进成结果。
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <article class="border-b border-white/8 pb-8">
+            <h3 class="font-medium" style="color: var(--color-text-primary);">个人求职网站</h3>
+            <p class="mt-1 text-xs opacity-60">内容策略 · 信息架构 · AI 辅助搭建</p>
+            <p class="mt-3 text-sm leading-[1.9]">把个人表达当成一个产品问题来处理：先明确谁会看、他们最关心什么、首页应该先建立什么判断，再反推内容结构、表达顺序和页面节奏。这个项目真正证明的不是我做了一个网页，而是我能把模糊定位推进成可被感知、可被验证的体验。</p>
+          </article>
+          <article class="border-b border-white/8 pb-8">
+            <h3 class="font-medium" style="color: var(--color-text-primary);">参与策划的抖音账号</h3>
+            <p class="mt-1 text-xs opacity-60">内容产品 · 用户匹配 · 选题策划</p>
+            <p class="mt-3 text-sm leading-[1.9]">在内容策划中，我更关注内容与用户之间的匹配关系，而不只是发布本身。会持续判断：内容到底想打到谁、用户为什么会停留、表达方式怎样更容易被理解和传播，以及一个选题从想法到执行怎么降低试错成本。</p>
+          </article>
+        </div>
+
+        <p class="text-xs leading-[1.8] opacity-50">
+          此前也在实习和大学项目中接触过任务拆解、沟通协调与节奏把控等真实协作场景，这些经历让我更在意“如何把事推进到位”，而不只是“把事做完”。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 关于我 -->
+  <section class="snap-section flex items-center justify-center" data-nav-title="关于我" aria-labelledby="about-contact-title">
+    <div class="mx-auto max-w-3xl px-6 py-24 md:px-8">
+      <div class="about-shell animate space-y-6">
+        <div class="space-y-3">
+          <h2 id="about-contact-title" class="font-semibold text-[var(--color-text-primary)] sm:text-2xl">
+            关于我
+          </h2>
+        </div>
+
+        <article class="space-y-4">
+          <p>我对 AI、产品和表达长期保持兴趣，也因此更关注一件事是如何被想清楚、被推进、再被真实体验到的。</p>
+          <p>会计学背景让我习惯从目标、成本、协作和落地路径去看问题，这也让我在做产品判断时更重视现实约束。</p>
+          <p>与此同时，我对细节比较敏感。很多真正被感受到的体验，不来自宏大概念，而来自那些容易被忽略的小地方。</p>
+          <p>如果你在寻找一个对 AI 有持续兴趣、能从产品角度思考问题、也愿意认真打磨细节的人，欢迎和我聊聊。</p>
+        </article>
+
+        <ul class="not-prose flex flex-wrap items-center gap-x-2 gap-y-2 border-t border-white/8 pt-6 text-sm">
+          {
+            [
+              ...SOCIALS.map((SOCIAL) => ({
+                href: SOCIAL.HREF,
+                label: SOCIAL.NAME,
+                external: true,
+                ariaLabel: `${SITE.TITLE} on ${SOCIAL.NAME}`,
+              })),
+              {
+                href: `mailto:${SITE.EMAIL}`,
+                label: SITE.EMAIL,
+                external: false,
+                ariaLabel: `Email ${SITE.TITLE}`,
+              },
+            ].map((contact, index, contacts) => (
+              <li data-contact={contact.href} class="flex items-center gap-x-2 text-nowrap">
+                <Link
+                  href={contact.href}
+                  external={contact.external}
+                  aria-label={contact.ariaLabel}
+                >
+                  {contact.label}
+                </Link>
+                {index < contacts.length - 1 && <span aria-hidden="true">/</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  #landing {
+    min-height: 100dvh;
+    height: 100dvh;
+  }
+
+  #landing > .grid {
+    height: 100%;
+  }
+
+  .landing-copy {
+    min-height: 100%;
+    padding-left: clamp(2rem, 4vw, 3rem);
+    padding-right: clamp(2rem, 4vw, 3rem);
+  }
+
+  .landing-visual {
+    min-height: 100%;
+  }
+
+  .landing-portrait {
+    transform: scale(1.16);
+    object-position: center 54%;
+  }
+
+  .landing-item {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: landing-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .landing-item:nth-child(1) { animation-delay: 0.1s; }
+  .landing-item:nth-child(2) { animation-delay: 0.3s; }
+
+  .method-shell,
+  .about-shell {
+    width: 100%;
+  }
+
+  .method-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .method-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    opacity: 0.72;
+  }
+
+  .method-card {
+    border: 1px solid oklch(0.34 0.02 260 / 0.45);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: linear-gradient(180deg, oklch(0.17 0.01 260 / 0.72), oklch(0.15 0.01 260 / 0.45));
+  }
+
+  .method-card-title,
+  .method-step-title,
+  .method-ai-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .method-card-copy,
+  .method-step-copy,
+  .method-ai-copy {
+    margin-top: 0.45rem;
+    font-size: 0.84rem;
+    line-height: 1.85;
+    color: var(--color-text-secondary);
+  }
+
+  .method-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.9rem;
+    align-items: start;
+    padding-top: 0.2rem;
+  }
+
+  .method-step + .method-step {
+    border-top: 1px solid oklch(0.34 0.02 260 / 0.35);
+    padding-top: 1rem;
+  }
+
+  .method-step-index {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
+    opacity: 0.8;
+    padding-top: 0.25rem;
+  }
+
+  .method-ai-panel {
+    border: 1px solid oklch(0.34 0.02 260 / 0.45);
+    border-radius: 1.25rem;
+    padding: clamp(1.2rem, 2vw, 1.6rem);
+    background: linear-gradient(180deg, oklch(0.18 0.01 260 / 0.72), oklch(0.14 0.01 260 / 0.58));
+  }
+
+  @keyframes landing-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll-snap: one scroll = one page */
+  .snap-section {
+    min-height: 100dvh;
+    height: auto;
+    scroll-snap-align: start;
+  }
+
+  #section-hero {
+    scroll-margin-top: 4rem;
+  }
+
+  :global(#site-header.landing-header-hidden) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 767px) {
+    #landing {
+      height: auto;
+      min-height: 100dvh;
+    }
+
+    #landing > .grid {
+      min-height: 100dvh;
+      height: auto;
+    }
+
+    .landing-visual {
+      min-height: 50dvh;
+    }
+
+    .landing-copy {
+      min-height: 50dvh;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .landing-copy {
+      padding-top: clamp(7.5rem, 13vh, 9.5rem);
+      padding-bottom: clamp(3rem, 6vh, 4.5rem);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .snap-section {
+      min-height: 100dvh;
+      height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .landing-item {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  let landingInitialized = false;
+
+  function setLandingHeaderVisibility(isLandingVisible: boolean) {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    header.classList.toggle('landing-header-hidden', isLandingVisible);
+  }
+
+  function initLanding() {
+    if (landingInitialized) return;
+
+    setLandingHeaderVisibility(false);
+
+    const landing = document.getElementById('landing');
+    if (!landing || typeof IntersectionObserver === 'undefined') return;
+
+    landingInitialized = true;
+
+    // Hide header when landing is visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setLandingHeaderVisibility(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(landing);
+
+    // Smooth scroll for the button
+    const btn = landing.querySelector('a[href="#section-hero"]');
+    const handleScrollClick = (e: Event) => {
+      e.preventDefault();
+      document.getElementById('section-hero')?.scrollIntoView({ behavior: 'smooth' });
+    };
+    btn?.addEventListener('click', handleScrollClick);
+
+    document.addEventListener('astro:before-swap', () => {
+      landingInitialized = false;
+      setLandingHeaderVisibility(false);
+      observer.disconnect();
+      btn?.removeEventListener('click', handleScrollClick);
+      document.removeEventListener('astro:after-swap', initLanding);
+    }, { once: true });
+  }
+
+  document.removeEventListener('astro:after-swap', initLanding);
+  document.addEventListener('astro:after-swap', initLanding);
+  initLanding();
+</script>

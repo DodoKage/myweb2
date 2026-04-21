@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Preview — Chris Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,300;1,7..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d0d10;
+      --surface: #13131a;
+      --card: #1a1a22;
+      --border: rgba(255,255,255,0.07);
+      --accent: #d4b896;
+      --accent-dim: #b09a78;
+      --text-primary: #ede8e0;
+      --text-secondary: #a8a098;
+      --text-muted: #6a6460;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: 'Literata', serif;
+      min-height: 100vh;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* Header */
+    .page-header {
+      max-width: 1200px;
+      margin: 0 auto 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header .label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+    .page-header h1 {
+      margin-top: 0.6rem;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+    .page-header p {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      opacity: 0.5;
+    }
+
+    /* Font Family Row */
+    .font-row {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+    .font-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .font-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: 0.06em;
+    }
+    .font-tags {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .font-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2em 0.6em;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-muted);
+    }
+    .font-tag.recommended {
+      border-color: var(--accent-dim);
+      color: var(--accent-dim);
+    }
+
+    /* Scale samples */
+    .scale-sample {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .sample-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+    }
+    .sample-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .sample-text {
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* Heading large */
+    .sample-heading-xl {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    /* Heading medium */
+    .sample-heading-lg {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    /* Heading small */
+    .sample-heading-sm {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    /* Body */
+    .sample-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+    }
+    /* Caption */
+    .sample-caption {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    /* Chinese body */
+    .sample-chinese {
+      font-size: 0.92rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      font-family: 'Literata', serif;
+    }
+
+    /* Comparison */
+    .compare-section {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+    .compare-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .compare-cell {
+      background: var(--card);
+      padding: 1.5rem;
+    }
+    .compare-cell-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.8rem;
+    }
+    .compare-cell .sample-heading-xl {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    /* Chinese comparison */
+    .chinese-compare {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+    .chinese-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .chinese-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    .chinese-card-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .chinese-display {
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+    .chinese-body {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+    }
+
+    /* Footer note */
+    .footer-note {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .footer-note a {
+      color: var(--accent-dim);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 2rem 1rem 4rem; }
+      .compare-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <p class="label">Chris Portfolio / Font Exploration</p>
+    <h1>强设计感字体排版预览</h1>
+    <p>Editorial · Serif · 克制冷调 · 与深色+暖米色系统匹配</p>
+  </header>
+
+  <!-- Bodoni Moda — 当前字体 -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Bodoni Moda</span>
+      <div class="font-tags">
+        <span class="font-tag recommended">当前字体</span>
+        <span class="font-tag">经典高对比</span>
+        <span class="font-tag">标题/品牌</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Bodoni Moda', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Bodoni Moda', serif;">Bodoni Moda · 72px · 细衬线高对比</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Bodoni Moda', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Bodoni Moda', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playfair Display -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Playfair Display</span>
+      <div class="font-tags">
+        <span class="font-tag recommended">强烈推荐</span>
+        <span class="font-tag">编辑感</span>
+        <span class="font-tag">高辨识度</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Playfair Display', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Playfair Display', serif;">Playfair Display · 经典高对比衬线</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Playfair Display', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Playfair Display', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cormorant Garamond -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Cormorant Garamond</span>
+      <div class="font-tags">
+        <span class="font-tag recommended">强烈推荐</span>
+        <span class="font-tag">优雅纤细</span>
+        <span class="font-tag">正文/副标题</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Cormorant Garamond', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Cormorant Garamond', serif;">Cormorant Garamond · 优雅古典</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Cormorant Garamond', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Cormorant Garamond', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fraunces -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Fraunces</span>
+      <div class="font-tags">
+        <span class="font-tag">有机衬线</span>
+        <span class="font-tag">个性强</span>
+        <span class="font-tag">品牌表达</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Fraunces', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Fraunces', serif;">Fraunces · 有机变量字体·个性独特</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Fraunces', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Fraunces', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsreader -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Newsreader</span>
+      <div class="font-tags">
+        <span class="font-tag recommended">强烈推荐</span>
+        <span class="font-tag">报纸编辑感</span>
+        <span class="font-tag">正文可读性</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Newsreader', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Newsreader', serif;">Newsreader · 报纸编辑感</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Newsreader', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Newsreader', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DM Serif Display -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">DM Serif Display</span>
+      <div class="font-tags">
+        <span class="font-tag">现代衬线</span>
+        <span class="font-tag">高辨识度</span>
+        <span class="font-tag">标题</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'DM Serif Display', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'DM Serif Display', serif;">DM Serif Display · 现代衬线</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'DM Serif Display', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'DM Serif Display', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Literata (current body candidate) -->
+  <section class="font-row">
+    <div class="font-meta">
+      <span class="font-name">Literata</span>
+      <div class="font-tags">
+        <span class="font-tag recommended">强烈推荐正文</span>
+        <span class="font-tag">阅读优化</span>
+        <span class="font-tag">书卷气</span>
+      </div>
+    </div>
+    <div class="scale-sample">
+      <div class="sample-block">
+        <p class="sample-label">Display / Hero Title</p>
+        <p class="sample-text sample-heading-xl" style="font-family: 'Literata', serif;">AI Native PM</p>
+        <p class="sample-text sample-caption" style="font-family: 'Literata', serif;">Literata · 阅读优化字体</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Section Title</p>
+        <p class="sample-text sample-heading-lg" style="font-family: 'Literata', serif;">把模糊需求，推进成清晰可落地的产品体验</p>
+      </div>
+      <div class="sample-block">
+        <p class="sample-label">Body Copy</p>
+        <p class="sample-text sample-body" style="font-family: 'Literata', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison: Bodoni vs Playfair -->
+  <section class="compare-section">
+    <p class="compare-title">同屏对比 · Heading（72px）</p>
+    <div class="compare-row">
+      <div class="compare-cell">
+        <p class="compare-cell-label">Bodoni Moda（当前）</p>
+        <p class="sample-heading-xl" style="font-family: 'Bodoni Moda', serif;">AI Native<br>PM Candidate</p>
+      </div>
+      <div class="compare-cell">
+        <p class="compare-cell-label">Playfair Display（候选）</p>
+        <p class="sample-heading-xl" style="font-family: 'Playfair Display', serif;">AI Native<br>PM Candidate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chinese display + serif body combination test -->
+  <section class="chinese-compare">
+    <p class="compare-title">中文正文 + 西文标题 组合测试</p>
+    <div class="chinese-compare-grid">
+      <div class="chinese-card">
+        <p class="chinese-card-label">Bodoni Moda（标题）+ Literata（正文）</p>
+        <p class="chinese-display" style="font-family: 'Bodoni Moda', serif;">Chris</p>
+        <p class="chinese-body" style="font-family: 'Literata', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+      <div class="chinese-card">
+        <p class="chinese-card-label">Playfair Display（标题）+ Literata（正文）</p>
+        <p class="chinese-display" style="font-family: 'Playfair Display', serif;">Chris</p>
+        <p class="chinese-body" style="font-family: 'Literata', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+      <div class="chinese-card">
+        <p class="chinese-card-label">Cormorant Garamond（标题）+ Literata（正文）</p>
+        <p class="chinese-display" style="font-family: 'Cormorant Garamond', serif;">Chris</p>
+        <p class="chinese-body" style="font-family: 'Literata', serif;">我是樊博，Chris，暨南大学 22 级会计学本科，正在求职 PM / AI Native PM 方向。相比直接堆功能，我更擅长先定义问题、梳理用户与约束，再把模糊需求推进成清晰、可落地的产品体验。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-note">
+    <p>字体通过 Google Fonts CDN 加载，变量字体使用 font-variation-settings 控制粗细。</p>
+    <p style="margin-top: 0.4rem;">文件路径：/mnt/d/myweb2/webtest/fonts.html</p>
+  </footer>
+
+</body>
+</html>
